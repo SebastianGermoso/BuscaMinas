@@ -18,7 +18,7 @@ namespace BuscaMinas
         public const int cantidadDeMinas = 20;
         Minas minas = new Minas();
         Verificacion verificacion = new Verificacion();
-
+        
         public Form1()
         {
             InitializeComponent();
