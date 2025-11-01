@@ -62,6 +62,7 @@ namespace BuscaMinas
             if (e.Button == MouseButtons.Left)
             {
                 MessageBox.Show("izquierdo en:" + fila + ", " + columna);
+                
             }
             else if (e.Button == MouseButtons.Right)
             {
