@@ -10,10 +10,11 @@ namespace BuscaMinas
     internal class Verificacion
     {
         int cantidadMinas = 0;
+        List <(int, int)> botonesCercanos = new List <(int, int)> ();
+        bool limpieza = true;
 
         public void VerificarCasillaCercanas(int fila, int columna, Button boton, List<(int,int)> posiciones, Button[,] botonesExistentes)
         {
-            botonesExistentes[1, 1].Text = "1";
             
             if (fila == 0 || fila == 9 || columna == 0 || columna == 9)
             {
@@ -25,7 +26,25 @@ namespace BuscaMinas
                 Comprovacion(fila, columna, boton, posiciones);
                 if (cantidadMinas == 0)
                 {
+                    
+                    int botonesRevisados = 0;
+                    MessageBox.Show(string.Join(Environment.NewLine, botonesCercanos));
 
+                    while (limpieza == true)
+                    {
+                        if (botonesRevisados > botonesCercanos.Count)
+                        {
+                            limpieza = false;
+                        }
+                        else
+                        {
+                            //Comprovacion(botonesCercanos[botonesRevisados].Item1, botonesCercanos[botonesRevisados].Item2, botonesExistentes[botonesCercanos[botonesRevisados].Item1, botonesCercanos[botonesRevisados].Item2], posiciones);
+                            botonesRevisados++;
+                        }
+                            
+                       
+                    }
+                   
                 }
                 
             }
@@ -36,12 +55,13 @@ namespace BuscaMinas
         {
 
             cantidadMinas = 0;
-            for (int i = fila - 1; i <= fila + 1; i++)
+            for (int i = fila - 1; i <= (fila + 1); i++)
             {
                 for (int j = columna - 1; j <= columna + 1; j++)
                 {
-                    if ((i + j) != (fila + columna))
+                    if ( i != fila || j != columna)
                     {
+                        MessageBox.Show(i + ", " + j);
                         bool esmina = EsMina(i, j, posicionesC);
                         if (esmina == true)
                         {
@@ -51,8 +71,28 @@ namespace BuscaMinas
                     }
                 }
             }
-            if (cantidadMinas > 0) { botonPresionado.Text = cantidadMinas.ToString(); }
+            if (cantidadMinas > 0) 
+            { 
+                botonPresionado.Text = cantidadMinas.ToString();
+            }
+            else
+            {
+                botonPresionado.Enabled = false;
+                for (int i = fila - 1; i <= fila + 1; i++)
+                {
+                    for (int j = columna - 1; j <= columna + 1; j++)
+                    {
+                        if ((i != fila || j != columna) && !botonesCercanos.Contains((fila,columna)))
+                        {
+                            botonesCercanos.Add((i, j));
+                        }
+                    }
+                }
+            }
         }
+
+
+
         public bool EsMina(int fila, int columna, List<(int, int)> minasPosicion)
         {
             return minasPosicion.Contains((fila, columna));
