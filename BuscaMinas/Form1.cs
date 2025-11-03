@@ -13,11 +13,12 @@ namespace BuscaMinas
     public partial class Form1 : Form
     {
         public const int fila = 10;
-        public const int columnas = 20;
+        public const int columnas = 10;
         public const int hxw = 30;
         public const int cantidadDeMinas = 20;
         Minas minas = new Minas();
         Verificacion verificacion = new Verificacion();
+        public Button[,] _botonesVisuales = new Button[10,10];
         
         public Form1()
         {
@@ -47,6 +48,8 @@ namespace BuscaMinas
 
                     cuadro.MouseDown += new MouseEventHandler(Boton_MouseDown);
 
+                    _botonesVisuales[f,c] = cuadro;
+
                     this.Controls.Add(cuadro);
                 }
             }
@@ -66,7 +69,7 @@ namespace BuscaMinas
             if (e.Button == MouseButtons.Left)
             {
                 //MessageBox.Show("izquierdo en:" + fila + ", " + columna);
-                verificacion.VerificarCasillaCercanas(fila, columna, botonClickeado,minas.posicionMinas);
+                verificacion.VerificarCasillaCercanas(fila, columna, botonClickeado,minas.posicionMinas, _botonesVisuales);
                 
             }
             else if (e.Button == MouseButtons.Right)

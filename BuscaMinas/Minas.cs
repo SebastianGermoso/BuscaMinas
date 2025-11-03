@@ -22,7 +22,6 @@ namespace BuscaMinas
                 int columna = random.Next(columnas);
                 posicionMinas.Add((fila, columna));
             }
-            MessageBox.Show(posicionMinas[0].Item1 + ", " + posicionMinas[0].Item2);
         }
 
         

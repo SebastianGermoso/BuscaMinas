@@ -10,10 +10,10 @@ namespace BuscaMinas
     internal class Verificacion
     {
         int cantidadMinas = 0;
-        
 
-        public void VerificarCasillaCercanas(int fila, int columna, Button boton, List<(int,int)> posiciones)
+        public void VerificarCasillaCercanas(int fila, int columna, Button boton, List<(int,int)> posiciones, Button[,] botonesExistentes)
         {
+            botonesExistentes[1, 1].Text = "1";
             
             if (fila == 0 || fila == 9 || columna == 0 || columna == 9)
             {
@@ -23,7 +23,10 @@ namespace BuscaMinas
             else
             {
                 Comprovacion(fila, columna, boton, posiciones);
+                if (cantidadMinas == 0)
+                {
 
+                }
                 
             }
 
@@ -52,7 +55,6 @@ namespace BuscaMinas
         }
         public bool EsMina(int fila, int columna, List<(int, int)> minasPosicion)
         {
-            MessageBox.Show(minasPosicion.Count.ToString());
             return minasPosicion.Contains((fila, columna));
         }
     }
