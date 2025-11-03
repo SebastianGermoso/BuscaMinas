@@ -38,7 +38,7 @@ namespace BuscaMinas
                         }
                         else
                         {
-                            //Comprovacion(botonesCercanos[botonesRevisados].Item1, botonesCercanos[botonesRevisados].Item2, botonesExistentes[botonesCercanos[botonesRevisados].Item1, botonesCercanos[botonesRevisados].Item2], posiciones);
+                            Comprovacion(botonesCercanos[botonesRevisados].Item1, botonesCercanos[botonesRevisados].Item2, botonesExistentes[botonesCercanos[botonesRevisados].Item1, botonesCercanos[botonesRevisados].Item2], posiciones);
                             botonesRevisados++;
                         }
                             
